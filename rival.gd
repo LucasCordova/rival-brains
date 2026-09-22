@@ -59,3 +59,8 @@ func _change_state(new_state: State) -> void:
 func frighten() -> void:
     frightened_left = frightened_time
     _change_state(State.FRIGHTENED)
+
+func calm() -> void:
+    frightened_left = 0.0
+    patrol_index = 0
+    _change_state(State.PATROL)

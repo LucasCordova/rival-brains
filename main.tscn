@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3]
 
+[ext_resource type="Script" path="res://game.gd" id="0_main"]
 [ext_resource type="PackedScene" path="res://walls.tscn" id="1_main"]
 [ext_resource type="PackedScene" path="res://player.tscn" id="2_main"]
 [ext_resource type="PackedScene" path="res://rival.tscn" id="3_main"]
 [ext_resource type="PackedScene" path="res://fig.tscn" id="4_main"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("0_main")
 
 [node name="Walls" parent="." instance=ExtResource("1_main")]
 
@@ -17,3 +19,15 @@ position = Vector2(950, 170)
 
 [node name="Fig" parent="." instance=ExtResource("4_main")]
 position = Vector2(576, 500)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Banner" type="Label" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+vertical_alignment = 1
