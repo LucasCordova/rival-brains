@@ -1,9 +1,8 @@
 # Rival Brains
 
-The W5R1 lecture demo: one arena, one Bearcat, one rival, and a brain that
-gets smarter one branch at a time. This is the state machine lecture running
-as a game.
-
+The week 5 state machines lecture demo: one arena, one Bearcat, one rival,
+and a brain that gets smarter one branch at a time (demo1 and demo2 on
+Tuesday, demo3 and demo4 on Thursday). This is the lecture running as a game.
 ## The demos
 
 | Branch | The rival's brain |
