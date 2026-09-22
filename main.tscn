@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="PackedScene" path="res://walls.tscn" id="1_main"]
 [ext_resource type="PackedScene" path="res://player.tscn" id="2_main"]
 [ext_resource type="PackedScene" path="res://rival.tscn" id="3_main"]
+[ext_resource type="PackedScene" path="res://fig.tscn" id="4_main"]
 
 [node name="Main" type="Node2D"]
 
@@ -13,3 +14,6 @@ position = Vector2(200, 480)
 
 [node name="Rival" parent="." instance=ExtResource("3_main")]
 position = Vector2(950, 170)
+
+[node name="Fig" parent="." instance=ExtResource("4_main")]
+position = Vector2(576, 500)
