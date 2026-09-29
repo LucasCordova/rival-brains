@@ -2,12 +2,7 @@ extends CharacterBody2D
 
 enum State { PATROL, CHASE, FRIGHTENED }
 
-@export var patrol_speed: float = 140.0
-@export var chase_speed: float = 220.0
-@export var sight_range: float = 260.0
-@export var give_up_range: float = 360.0
-@export var flee_speed: float = 260.0
-@export var frightened_time: float = 3.0
+@export var stats: RivalStats
 
 var state: State = State.PATROL
 var patrol_points: Array[Vector2] = [
@@ -19,6 +14,8 @@ var frightened_left: float = 0.0
 @onready var player: Node2D = get_node("../Player")
 
 func _ready() -> void:
+    if stats == null:
+        stats = RivalStats.new()
     _change_state(State.PATROL)
 
 func _physics_process(delta: float) -> void:
@@ -30,16 +27,16 @@ func _physics_process(delta: float) -> void:
             if global_position.distance_to(target) < 12.0:
                 patrol_index = (patrol_index + 1) % patrol_points.size()
                 target = patrol_points[patrol_index]
-            velocity = (target - global_position).normalized() * patrol_speed
-            if to_player.length() < sight_range:
+            velocity = (target - global_position).normalized() * stats.patrol_speed
+            if to_player.length() < stats.sight_range:
                 _change_state(State.CHASE)
         State.CHASE:
-            velocity = to_player.normalized() * chase_speed
-            if to_player.length() > give_up_range:
+            velocity = to_player.normalized() * stats.chase_speed
+            if to_player.length() > stats.give_up_range:
                 _change_state(State.PATROL)
         State.FRIGHTENED:
             frightened_left -= delta
-            velocity = -to_player.normalized() * flee_speed
+            velocity = -to_player.normalized() * stats.flee_speed
             if frightened_left <= 0.0:
                 _change_state(State.PATROL)
 
@@ -57,7 +54,7 @@ func _change_state(new_state: State) -> void:
             modulate = Color("478cbf")
 
 func frighten() -> void:
-    frightened_left = frightened_time
+    frightened_left = stats.frightened_time
     _change_state(State.FRIGHTENED)
 
 func calm() -> void:

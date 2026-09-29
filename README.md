@@ -11,6 +11,7 @@ Tuesday, demo3 and demo4 on Thursday). This is the lecture running as a game.
 | `demo2` | PATROL and CHASE: sight range, give-up range, and a tint per state. |
 | `demo3` | FRIGHTENED: the fig forces a transition from outside; a timer walks it back. |
 | `demo4` | Machines all the way up: TITLE, PLAYING, CAUGHT. Screens are states too. |
+| `demo5` | Data-driven: the numbers move into `RivalStats` (.tres files); swap the rival's personality in the Inspector. |
 | `main` | Same as `demo4`. |
 
 ## Running a demo
