@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" path="res://game.gd" id="0_main"]
 [ext_resource type="PackedScene" path="res://walls.tscn" id="1_main"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" path="res://rival.tscn" id="3_main"]
 [ext_resource type="PackedScene" path="res://fig.tscn" id="4_main"]
 [ext_resource type="PackedScene" path="res://hud.tscn" id="5_main"]
+[ext_resource type="PackedScene" path="res://pause_menu.tscn" id="6_main"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("0_main")
@@ -34,3 +35,5 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HUD" parent="UI" instance=ExtResource("5_main")]
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("6_main")]

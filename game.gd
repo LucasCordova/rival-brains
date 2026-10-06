@@ -14,6 +14,7 @@ var best_time: float = 0.0
 @onready var rival: CharacterBody2D = $Rival
 @onready var banner: Label = $UI/Banner
 @onready var hud: MarginContainer = $UI/HUD
+@onready var pause_menu: ColorRect = $UI/PauseMenu
 
 func _ready() -> void:
 	player_start = player.position
@@ -39,6 +40,7 @@ func _change_state(new_state: State) -> void:
 	var running := new_state == State.PLAYING
 	player.set_physics_process(running)
 	rival.set_physics_process(running)
+	pause_menu.allowed = running
 	match new_state:
 		State.TITLE:
 			player.position = player_start
