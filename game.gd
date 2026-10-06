@@ -8,7 +8,6 @@ var state: State = State.TITLE
 var player_start: Vector2
 var rival_start: Vector2
 var time_alive: float = 0.0
-var best_time: float = 0.0
 
 @onready var player: CharacterBody2D = $Player
 @onready var rival: CharacterBody2D = $Rival
@@ -48,14 +47,11 @@ func _change_state(new_state: State) -> void:
 			rival.calm()
 			time_alive = 0.0
 			hud.show_time(time_alive)
-			hud.show_best(best_time)
 			banner.text = "RIVAL BRAINS\nPress Space to play"
 			banner.visible = true
 		State.PLAYING:
 			banner.visible = false
 		State.CAUGHT:
-			if time_alive > best_time:
-				best_time = time_alive
-				hud.show_best(best_time)
+			Scoreboard.report(time_alive)
 			banner.text = "CAUGHT!\nPress Space to try again"
 			banner.visible = true
