@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://hud.gd" id="1_hud"]
+
+[node name="HUD" type="MarginContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 66.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+script = ExtResource("1_hud")
+
+[node name="Row" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TimeLabel" type="Label" parent="Row"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "TIME 0.0"
+
+[node name="Spacer" type="Control" parent="Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BestLabel" type="Label" parent="Row"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "BEST 0.0"
