@@ -6,7 +6,7 @@ enum State { PATROL, CHASE, FRIGHTENED }
 
 var state: State = State.PATROL
 var patrol_points: Array[Vector2] = [
-	Vector2(200, 150), Vector2(950, 150), Vector2(950, 500), Vector2(200, 500),
+	Vector2(792, 72), Vector2(1464, 72),
 ]
 var patrol_index: int = 0
 var frightened_left: float = 0.0
