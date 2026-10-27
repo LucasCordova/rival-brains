@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dvgwhk5p0ea0i"]
+
+[sub_resource type="GDScript" id="GDScript_272bh"]
+script/source = "extends ColorRect
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="PauseMenu" type="ColorRect" unique_id=1918075139]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.5882353)
+script = SubResource("GDScript_272bh")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1854239627]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Menu" type="VBoxContainer" parent="CenterContainer" unique_id=1712718154]
+visible = false
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CenterContainer/Menu" unique_id=894863286]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "PAUSED"
+
+[node name="ResumeButton" type="Button" parent="CenterContainer/Menu" unique_id=2125728256]
+layout_mode = 2
+
+[node name="RestartButton" type="Button" parent="CenterContainer/Menu" unique_id=1770315384]
+layout_mode = 2
+
+[connection signal="pressed" from="CenterContainer/Menu/ResumeButton" to="CenterContainer/Menu" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="CenterContainer/Menu/RestartButton" to="CenterContainer/Menu" method="_on_restart_button_pressed"]

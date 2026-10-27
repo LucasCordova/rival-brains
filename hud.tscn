@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://bq27dyqaghrxh"]
+
+[sub_resource type="GDScript" id="GDScript_vdnt7"]
+script/source = "extends MarginContainer
+
+@onready var time_label: Label = $Row/TimeLabel
+@onready var best_label: Label = $Row/BestLabel
+
+func show_time(seconds: float) -> void:
+	time_label.text = \"TIME %.1f\" % seconds
+
+func show_best(seconds: float) -> void:
+	best_label.text = \"BEST %.1f\" % seconds
+"
+
+[node name="HUD" type="MarginContainer" unique_id=1161761522]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+script = SubResource("GDScript_vdnt7")
+
+[node name="Row" type="HBoxContainer" parent="." unique_id=69118592]
+propagate_maximum_size = false
+layout_mode = 2
+
+[node name="TimeLabel" type="Label" parent="Row" unique_id=48691118]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Time 0.0"
+
+[node name="Spacer" type="Control" parent="Row" unique_id=982978093]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BestLabel" type="Label" parent="Row" unique_id=2035285148]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Best 0.0
+"
