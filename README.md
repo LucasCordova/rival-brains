@@ -14,6 +14,7 @@ Tuesday, demo3 and demo4 on Thursday). This is the lecture running as a game.
 | `demo5` | Data-driven: the numbers move into `RivalStats` (.tres files); swap the rival's personality in the Inspector. |
 | `demo6` | UI and a global: a HUD scene, a pause menu, and a `Scoreboard` autoload that outlives a scene reload. Tags `demo6-lap1` and `demo6-lap2` are the catch-up checkpoints. |
 | `demo7` | The maze: the arena walls become a painted `TileMapLayer`, a `Camera2D` follows Blitz through a maze bigger than the window, and each maze is its own scene with spawns, a patrol lane, and an exit, so the game runs a gauntlet of them. Walls block the rival's sight. Tags `demo7-lap1` and `demo7-lap2` are the catch-up checkpoints. |
+| `demo8` | Performance: a `BerryStorm` rains marionberries on the maze. `demo8-lap1` is the slow version (every berry checks every other berry, every frame); `demo8-lap2` deletes that loop after the profiler points at it; `demo8` swaps instantiate and `queue_free` for an object pool, which removes the hitch when a burst lands. A `PerfLabel` in the corner shows frames per second and the node count. |
 | `main` | Same as `demo4`. |
 
 ## Running a demo
@@ -28,7 +29,7 @@ switching branches only touches scenes and scripts: accept Godot's reload
 prompt and run again. The one exception is `demo6`, which registers an autoload
 in `project.godot`: after checking it out (or leaving it), use Project, then
 Reload Current Project. Movement is arrows or WASD; Space drives the menus from
-`demo4` on; Escape pauses in `demo6`. In `demo7` the exit pad (yellow frame) loads the next maze; clearing the last one ends the run.
+`demo4` on; Escape pauses in `demo6`. In `demo7` the exit pad (yellow frame) loads the next maze; clearing the last one ends the run. In `demo8` the B key (or eating the fig) drops a burst of berries, which is the moment to watch in the profiler.
 
 ## The layer map
 
@@ -40,3 +41,4 @@ Reload Current Project. Movement is arrows or WASD; Space drives the menus from
 | Fig | snacks | player | I notice the player, then I am eaten. |
 | Maze tiles (`demo7`) | world | (none) | The tileset's physics layer is the world now; `walls.tscn` is gone. |
 | Exit (`demo7`) | snacks | player | I notice the player, then the next maze loads. |
+| Berry (`demo8`) | snacks | player | I notice the player, then I am eaten (or, from `demo8` on, I go back to the pool). |
