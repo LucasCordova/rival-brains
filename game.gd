@@ -9,15 +9,18 @@ var state: State = State.TITLE
 var maze_index: int = 0
 var maze: Maze
 var time_alive: float = 0.0
+var berries: int = 0
 
 @onready var player: CharacterBody2D = $Player
 @onready var rival: CharacterBody2D = $Rival
+@onready var storm: Node2D = $BerryStorm
 @onready var camera: Camera2D = $Player/Camera2D
 @onready var banner: Label = $UI/Banner
 @onready var hud: MarginContainer = $UI/HUD
 @onready var pause_menu: ColorRect = $UI/PauseMenu
 
 func _ready() -> void:
+	storm.berry_eaten.connect(_on_berry_eaten)
 	_change_state(State.TITLE)
 
 func _physics_process(delta: float) -> void:
@@ -39,12 +42,15 @@ func _change_state(new_state: State) -> void:
 	var running := new_state == State.PLAYING
 	player.set_physics_process(running)
 	rival.set_physics_process(running)
+	storm.set_process(running)
 	pause_menu.allowed = running
 	match new_state:
 		State.TITLE:
 			_load_maze(0)
 			time_alive = 0.0
+			berries = 0
 			hud.show_time(time_alive)
+			hud.show_berries(berries)
 			banner.text = "RIVAL BRAINS\nPress Space to play"
 			banner.visible = true
 		State.PLAYING:
@@ -76,9 +82,15 @@ func _load_maze(index: int) -> void:
 	camera.limit_right = box.end.x
 	camera.limit_bottom = box.end.y
 	camera.reset_smoothing()
+	storm.clear()
+	storm.area = Rect2(box)
 
 func _on_maze_exited() -> void:
 	if maze_index + 1 < mazes.size():
 		_load_maze(maze_index + 1)
 	else:
 		_change_state(State.ESCAPED)
+
+func _on_berry_eaten() -> void:
+	berries += 1
+	hud.show_berries(berries)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://game.gd" id="0_main"]
 [ext_resource type="PackedScene" path="res://mazes/maze_1.tscn" id="1_main"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" path="res://rival.tscn" id="4_main"]
 [ext_resource type="PackedScene" path="res://hud.tscn" id="5_main"]
 [ext_resource type="PackedScene" path="res://pause_menu.tscn" id="6_main"]
+[ext_resource type="Script" path="res://berry_storm.gd" id="7_main"]
+[ext_resource type="Script" path="res://perf_label.gd" id="8_main"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("0_main")
@@ -15,6 +17,9 @@ mazes = Array[PackedScene]([ExtResource("1_main"), ExtResource("2_main")])
 [node name="Player" parent="." instance=ExtResource("3_main")]
 
 [node name="Rival" parent="." instance=ExtResource("4_main")]
+
+[node name="BerryStorm" type="Node2D" parent="." groups=["storms"]]
+script = ExtResource("7_main")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -31,3 +36,16 @@ vertical_alignment = 1
 [node name="HUD" parent="UI" instance=ExtResource("5_main")]
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("6_main")]
+
+[node name="PerfLabel" type="Label" parent="UI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -44.0
+offset_right = 316.0
+offset_bottom = -16.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 18
+text = "FPS 0   NODES 0"
+script = ExtResource("8_main")
