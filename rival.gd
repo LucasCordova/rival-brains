@@ -56,15 +56,19 @@ func _change_state(new_state: State) -> void:
 	match new_state:
 		State.PATROL:
 			modulate = Color.WHITE
+			$StateLabel.text = ""
 		State.CHASE:
 			if old_state == State.PATROL:
 				leash = global_position
 			modulate = Color("ff2e97")
+			$StateLabel.text = "!"
 			$AlertSound.play()
 		State.RETURN:
 			modulate = Color("8f8ab0")
+			$StateLabel.text = "?"
 		State.FRIGHTENED:
 			modulate = Color("478cbf")
+			$StateLabel.text = "~"
 			$FrightenedSound.play()
 
 func frighten() -> void:

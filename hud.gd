@@ -16,3 +16,7 @@ func show_best(seconds: float) -> void:
 
 func show_berries(count: int) -> void:
 	berry_label.text = "BERRIES %d" % count
+
+func set_big_text(on: bool) -> void:
+	for label in [time_label, berry_label, best_label]:
+		label.add_theme_font_size_override("font_size", 44 if on else 28)

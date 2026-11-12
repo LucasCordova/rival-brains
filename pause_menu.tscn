@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://pause_menu.gd" id="1_pause"]
+[ext_resource type="Script" path="res://settings.gd" id="2_pause"]
+[ext_resource type="AudioStream" path="res://assets/audio/berry.wav" id="3_pause"]
 
 [node name="PauseMenu" type="ColorRect"]
 process_mode = 3
@@ -40,5 +42,63 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Restart"
 
+[node name="Settings" type="VBoxContainer" parent="Center/Menu"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+script = ExtResource("2_pause")
+
+[node name="MusicRow" type="HBoxContainer" parent="Center/Menu/Settings"]
+layout_mode = 2
+
+[node name="MusicLabel" type="Label" parent="Center/Menu/Settings/MusicRow"]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="Center/Menu/Settings/MusicRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="SfxRow" type="HBoxContainer" parent="Center/Menu/Settings"]
+layout_mode = 2
+
+[node name="SfxLabel" type="Label" parent="Center/Menu/Settings/SfxRow"]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Sounds"
+
+[node name="SfxSlider" type="HSlider" parent="Center/Menu/Settings/SfxRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="BigText" type="CheckButton" parent="Center/Menu/Settings"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Big text"
+
+[node name="SlowMode" type="CheckButton" parent="Center/Menu/Settings"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Slow mode"
+
+[node name="Preview" type="AudioStreamPlayer" parent="Center/Menu/Settings"]
+stream = ExtResource("3_pause")
+bus = &"SFX"
+
+[connection signal="value_changed" from="Center/Menu/Settings/MusicRow/MusicSlider" to="Center/Menu/Settings" method="_on_changed"]
+[connection signal="value_changed" from="Center/Menu/Settings/SfxRow/SfxSlider" to="Center/Menu/Settings" method="_on_sfx_slider_changed"]
+[connection signal="toggled" from="Center/Menu/Settings/BigText" to="Center/Menu/Settings" method="_on_changed"]
+[connection signal="toggled" from="Center/Menu/Settings/SlowMode" to="Center/Menu/Settings" method="_on_changed"]
 [connection signal="pressed" from="Center/Menu/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Center/Menu/RestartButton" to="." method="_on_restart_button_pressed"]
