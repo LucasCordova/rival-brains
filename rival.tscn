@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Texture2D" path="res://assets/ghost.png" id="1_rvl"]
 [ext_resource type="Script" path="res://rival.gd" id="2_rvl"]
 [ext_resource type="Resource" path="res://rivals/chaser.tres" id="3_rvl"]
+[ext_resource type="AudioStream" path="res://assets/audio/alert.wav" id="4_rvl"]
+[ext_resource type="AudioStream" path="res://assets/audio/frightened.wav" id="5_rvl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rvl"]
 size = Vector2(30, 30)
@@ -18,3 +20,9 @@ texture = ExtResource("1_rvl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_rvl")
+
+[node name="AlertSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_rvl")
+
+[node name="FrightenedSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_rvl")

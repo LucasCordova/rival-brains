@@ -18,6 +18,9 @@ var berries: int = 0
 @onready var banner: Label = $UI/Banner
 @onready var hud: MarginContainer = $UI/HUD
 @onready var pause_menu: ColorRect = $UI/PauseMenu
+@onready var berry_sound: AudioStreamPlayer = $Audio/BerrySound
+@onready var caught_sound: AudioStreamPlayer = $Audio/CaughtSound
+@onready var escaped_sound: AudioStreamPlayer = $Audio/EscapedSound
 
 func _ready() -> void:
 	storm.berry_eaten.connect(_on_berry_eaten)
@@ -56,10 +59,12 @@ func _change_state(new_state: State) -> void:
 		State.PLAYING:
 			banner.visible = false
 		State.CAUGHT:
+			caught_sound.play()
 			Scoreboard.report(time_alive)
 			banner.text = "CAUGHT!\nPress Space to try again"
 			banner.visible = true
 		State.ESCAPED:
+			escaped_sound.play()
 			Scoreboard.report(time_alive)
 			banner.text = "YOU ESCAPED THE GAUNTLET!\nPress Space to run it again"
 			banner.visible = true
@@ -94,3 +99,4 @@ func _on_maze_exited() -> void:
 func _on_berry_eaten() -> void:
 	berries += 1
 	hud.show_berries(berries)
+	berry_sound.play()

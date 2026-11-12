@@ -60,10 +60,12 @@ func _change_state(new_state: State) -> void:
 			if old_state == State.PATROL:
 				leash = global_position
 			modulate = Color("ff2e97")
+			$AlertSound.play()
 		State.RETURN:
 			modulate = Color("8f8ab0")
 		State.FRIGHTENED:
 			modulate = Color("478cbf")
+			$FrightenedSound.play()
 
 func frighten() -> void:
 	frightened_left = stats.frightened_time
