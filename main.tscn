@@ -30,16 +30,22 @@ script = ExtResource("7_main")
 
 [node name="Music" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("9_main")
+volume_db = -10.0
 autoplay = true
+bus = &"Music"
 
 [node name="BerrySound" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("10_main")
+max_polyphony = 6
+bus = &"SFX"
 
 [node name="CaughtSound" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("11_main")
+bus = &"SFX"
 
 [node name="EscapedSound" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("12_main")
+bus = &"SFX"
 
 [node name="UI" type="CanvasLayer" parent="."]
 

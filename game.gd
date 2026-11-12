@@ -99,4 +99,5 @@ func _on_maze_exited() -> void:
 func _on_berry_eaten() -> void:
 	berries += 1
 	hud.show_berries(berries)
+	berry_sound.pitch_scale = randf_range(0.9, 1.2)
 	berry_sound.play()

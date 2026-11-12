@@ -23,6 +23,8 @@ shape = SubResource("RectangleShape2D_rvl")
 
 [node name="AlertSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_rvl")
+bus = &"SFX"
 
 [node name="FrightenedSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_rvl")
+bus = &"SFX"
