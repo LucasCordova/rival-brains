@@ -21,6 +21,7 @@ var berries: int = 0
 @onready var berry_sound: AudioStreamPlayer = $Audio/BerrySound
 @onready var caught_sound: AudioStreamPlayer = $Audio/CaughtSound
 @onready var escaped_sound: AudioStreamPlayer = $Audio/EscapedSound
+@onready var run_log: Node = $RunLog
 
 func _ready() -> void:
 	storm.berry_eaten.connect(_on_berry_eaten)
@@ -61,11 +62,13 @@ func _change_state(new_state: State) -> void:
 		State.CAUGHT:
 			caught_sound.play()
 			Scoreboard.report(time_alive)
+			run_log.record("caught", maze_index + 1, _rival_name(), time_alive, berries)
 			banner.text = "CAUGHT!\nPress Space to try again"
 			banner.visible = true
 		State.ESCAPED:
 			escaped_sound.play()
 			Scoreboard.report(time_alive)
+			run_log.record("escaped", maze_index + 1, _rival_name(), time_alive, berries)
 			banner.text = "YOU ESCAPED THE GAUNTLET!\nPress Space to run it again"
 			banner.visible = true
 
@@ -101,3 +104,6 @@ func _on_berry_eaten() -> void:
 	hud.show_berries(berries)
 	berry_sound.pitch_scale = randf_range(0.9, 1.2)
 	berry_sound.play()
+
+func _rival_name() -> String:
+	return rival.stats.resource_path.get_file().get_basename()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3]
+[gd_scene load_steps=15 format=3]
 
 [ext_resource type="Script" path="res://game.gd" id="0_main"]
 [ext_resource type="PackedScene" path="res://mazes/maze_1.tscn" id="1_main"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" path="res://pause_menu.tscn" id="6_main"]
 [ext_resource type="Script" path="res://berry_storm.gd" id="7_main"]
 [ext_resource type="Script" path="res://perf_label.gd" id="8_main"]
+[ext_resource type="Script" path="res://run_log.gd" id="13_main"]
 
 [ext_resource type="AudioStream" path="res://assets/audio/music.wav" id="9_main"]
 [ext_resource type="AudioStream" path="res://assets/audio/berry.wav" id="10_main"]
@@ -25,6 +26,9 @@ mazes = Array[PackedScene]([ExtResource("1_main"), ExtResource("2_main")])
 
 [node name="BerryStorm" type="Node2D" parent="." groups=["storms"]]
 script = ExtResource("7_main")
+
+[node name="RunLog" type="Node" parent="."]
+script = ExtResource("13_main")
 
 [node name="Audio" type="Node" parent="."]
 
