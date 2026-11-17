@@ -3,6 +3,8 @@ extends Node2D
 
 signal exited
 
+@export var rival_stats: RivalStats
+
 @onready var tiles: TileMapLayer = $Tiles
 @onready var player_spawn: Marker2D = $PlayerSpawn
 @onready var rival_spawn: Marker2D = $RivalSpawn

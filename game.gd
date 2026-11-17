@@ -83,6 +83,8 @@ func _load_maze(index: int) -> void:
 	player.position = maze.player_spawn.position
 	rival.position = maze.rival_spawn.position
 	rival.patrol_points = maze.patrol_points()
+	if maze.rival_stats != null:
+		rival.stats = maze.rival_stats
 	rival.calm()
 	var box := maze.bounds()
 	camera.limit_left = box.position.x
