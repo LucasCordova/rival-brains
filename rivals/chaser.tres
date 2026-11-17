@@ -1,12 +1,15 @@
-[gd_resource type="Resource" script_class="RivalStats" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="RivalStats" format=3]
 
 [ext_resource type="Script" path="res://rival_stats.gd" id="1_stats"]
 
+[sub_resource type="Curve" id="Curve_p3qo5"]
+_limits = [0.0, 1.5, 0.0, 1.0]
+_data = [Vector2(0, 0.85), 0.0, 0.0, 0, 0, Vector2(1, 1.15), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [resource]
 script = ExtResource("1_stats")
-patrol_speed = 140.0
 chase_speed = 240.0
 sight_range = 320.0
 give_up_range = 420.0
-flee_speed = 260.0
-frightened_time = 3.0
+pressure = SubResource("Curve_p3qo5")

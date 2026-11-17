@@ -16,6 +16,7 @@ Tuesday, demo3 and demo4 on Thursday). This is the lecture running as a game.
 | `demo7` | The maze: the arena walls become a painted `TileMapLayer`, a `Camera2D` follows Blitz through a maze bigger than the window, and each maze is its own scene with spawns, a patrol lane, and an exit, so the game runs a gauntlet of them. Walls block the rival's sight. Tags `demo7-lap1` and `demo7-lap2` are the catch-up checkpoints. |
 | `demo8` | Performance: a `BerryStorm` rains marionberries on the maze. `demo8-lap1` is the slow version (every berry checks every other berry, every frame); `demo8-lap2` deletes that loop after the profiler points at it; `demo8` swaps instantiate and `queue_free` for an object pool, which removes the hitch when a burst lands. A `PerfLabel` in the corner shows frames per second and the node count. |
 | `demo9` | Audio and options: `demo9-lap1` gives the game music and sound effects, every one of them on the Master bus (the music is too loud and the berry sound stutters); `demo9-lap2` adds `Music` and `SFX` buses, mixes the music down on its own player, and varies the berry sound's pitch; `demo9` adds a settings panel to the pause menu (music and sound sliders, big text, slow mode) that saves to `user://settings.cfg`, and the rival's state now shows as a symbol above its head as well as a tint. |
+| `demo10` | Balancing and tuning: `demo10-lap1` adds a `RunLog` node that writes every run (outcome, maze, rival, seconds, berries) to `user://runs.csv` and prints a running median in Output, so tuning starts from evidence; `demo10-lap2` gives each maze a `rival_stats` slot, so maze 1 runs the ambusher and maze 2 the chaser and the gauntlet's difficulty is data; `demo10` adds a `pressure` Curve to `RivalStats` that multiplies the chase speed the longer a maze takes. |
 | `main` | Same as `demo4`. |
 
 ## Running a demo
@@ -30,7 +31,7 @@ switching branches only touches scenes and scripts: accept Godot's reload
 prompt and run again. The one exception is `demo6`, which registers an autoload
 in `project.godot`: after checking it out (or leaving it), use Project, then
 Reload Current Project. Movement is arrows or WASD; Space drives the menus from
-`demo4` on; Escape pauses in `demo6`. In `demo7` the exit pad (yellow frame) loads the next maze; clearing the last one ends the run. In `demo8` the B key (or eating the fig) drops a burst of berries, which is the moment to watch in the profiler. From `demo9` on the game has sound (turn your volume down before `demo9-lap1`), and Escape opens the pause menu with the settings in it. Every sound in `assets/audio/` was generated for this repo by a script; nothing is third-party.
+`demo4` on; Escape pauses in `demo6`. In `demo7` the exit pad (yellow frame) loads the next maze; clearing the last one ends the run. In `demo8` the B key (or eating the fig) drops a burst of berries, which is the moment to watch in the profiler. From `demo9` on the game has sound (turn your volume down before `demo9-lap1`), and Escape opens the pause menu with the settings in it. From `demo10` on, every run is logged: in Godot, Project, then Open User Data Folder shows `runs.csv`. Every sound in `assets/audio/` was generated for this repo by a script; nothing is third-party.
 
 ## The layer map
 

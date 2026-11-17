@@ -11,6 +11,7 @@ var patrol_points: Array[Vector2] = [
 var patrol_index: int = 0
 var frightened_left: float = 0.0
 var leash: Vector2   # where the rival left its lane; RETURN walks back to it
+var time_in_maze: float = 0.0
 
 @onready var player: Node2D = get_node("../Player")
 
@@ -21,6 +22,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var to_player := player.global_position - global_position
+	time_in_maze += delta
 
 	match state:
 		State.PATROL:
@@ -32,7 +34,7 @@ func _physics_process(delta: float) -> void:
 			if to_player.length() < stats.sight_range and _can_see_player():
 				_change_state(State.CHASE)
 		State.CHASE:
-			velocity = to_player.normalized() * stats.chase_speed
+			velocity = to_player.normalized() * stats.chase_speed * _pressure()
 			if to_player.length() > stats.give_up_range or not _can_see_player():
 				_change_state(State.RETURN)
 		State.RETURN:
@@ -77,8 +79,14 @@ func frighten() -> void:
 
 func calm() -> void:
 	frightened_left = 0.0
+	time_in_maze = 0.0
 	patrol_index = 0
 	_change_state(State.PATROL)
+
+func _pressure() -> float:
+	if stats.pressure == null:
+		return 1.0
+	return stats.pressure.sample(clampf(time_in_maze / stats.pressure_time, 0.0, 1.0))
 
 func _can_see_player() -> bool:
 	var space := get_world_2d().direct_space_state
