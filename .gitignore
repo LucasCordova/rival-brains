@@ -1,5 +1,7 @@
 # Godot build cache - never commit
 .godot/
+# Exported builds - never commit (export_presets.cfg is the recipe; build/ is the meal)
+build/
 # OS noise
 .DS_Store
 Thumbs.db
