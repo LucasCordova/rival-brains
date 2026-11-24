@@ -55,7 +55,7 @@ func _change_state(new_state: State) -> void:
 			berries = 0
 			hud.show_time(time_alive)
 			hud.show_berries(berries)
-			banner.text = "RIVAL BRAINS\nPress Space to play"
+			banner.text = "RIVAL BRAINS %s\nPress Space to play" % _version()
 			banner.visible = true
 		State.PLAYING:
 			banner.visible = false
@@ -109,3 +109,6 @@ func _on_berry_eaten() -> void:
 
 func _rival_name() -> String:
 	return rival.stats.resource_path.get_file().get_basename()
+
+func _version() -> String:
+	return "v" + str(ProjectSettings.get_setting("application/config/version", "dev"))
